@@ -572,7 +572,7 @@ body {
   padding: 1.25rem;
   border-bottom: 1px solid var(--color-border);
   display: flex;
-  justify-content: between;
+  justify-content: space-between;
   align-items: center;
   gap: 1rem;
 }
@@ -1119,7 +1119,7 @@ body {
 
     <header class="header" id="mainHeader">
         <div class="container">
-            <a href="#" class="header__title" id="homeLink">DevOps Tracker</a>
+            <a href="#" class="header__title" id="homeLink">Progress Tracker</a>
             <nav class="header__nav">
                 <!-- Guest Navigation -->
                 <div class="header__guest" id="guestNav">
@@ -1177,9 +1177,9 @@ body {
         <section class="landing" id="landingSection">
             <div class="container">
                 <div class="landing__content">
-                    <h1 class="landing__title">DevOps Preparation Tracker</h1>
+                    <h1 class="landing__title">Universal Progress Tracker</h1>
                     <p class="landing__subtitle">
-                        Master your DevOps interview preparation with a comprehensive tracking system 
+                        Master your learning goals with a comprehensive tracking system 
                         covering multiple technology areas and essential topics.
                     </p>
 
@@ -1369,7 +1369,7 @@ body {
                 <section class="search-section">
                     <div class="form-group">
                         <input type="text" class="form-control" id="searchInput" 
-                               placeholder="🔍 Search topics (e.g., Docker, Kubernetes, CI/CD...)">
+                               placeholder="🔍 Search topics...">
                     </div>
                 </section>
 
@@ -1387,31 +1387,30 @@ body {
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2025 DevOps Preparation Tracker. Built for the DevOps community.</p>
+                <p>&copy; 2025 Universal Progress Tracker. Built for learners everywhere.</p>
                 <p class="footer-links">
                     <a href="https://github.com" target="_blank">GitHub</a> •
-                    <a href="https://kubernetes.io/docs" target="_blank">Kubernetes Docs</a> •
-                    <a href="https://terraform.io/docs" target="_blank">Terraform Docs</a>
+                    <a href="#" onclick="window.tracker?.showAbout?.()">About</a> •
+                    <a href="#" onclick="window.tracker?.showHelp?.()">Help</a>
                 </p>
             </div>
         </div>
     </footer>
 
     <script>
-// Firebase configuration - YOUR ACTUAL CONFIG
+// Firebase configuration - UPDATED WITH YOUR NEW CONFIG
 const firebaseConfig = {
-  apiKey: "AIzaSyD4adoJJjOAeGLqPBQFZAPWAbneH8uQ",
-  authDomain: "devopstracker-5863d.firebaseapp.com",
-  projectId: "devopstracker-5863d",
-  storageBucket: "devopstracker-5863d.firebasestorage.app",
-  messagingSenderId: "359527400053",
-  appId: "1:359527400053:web:564b8c6ffc1377a19e2e3c",
-  measurementId: "G-XZH6ZS212V"
+  apiKey: "AIzaSyDxtU1Bsur2JljzLa1AOWZcT47Lhuy3cNI",
+  authDomain: "progress-tracker-f82b2.firebaseapp.com",
+  projectId: "progress-tracker-f82b2",
+  storageBucket: "progress-tracker-f82b2.firebasestorage.app",
+  messagingSenderId: "186443460225",
+  appId: "1:186443460225:web:0f1f573a89665a97c82780"
 };
 
 // Admin emails - ADD YOUR ADMIN EMAIL HERE
 const ADMIN_EMAILS = [
-    'vikasworks.devops@gmail.com'
+    'vikasworks.devops@gmail.com'   // Replace with your admin email
     // Add more admin emails as needed
 ];
 
@@ -1428,8 +1427,8 @@ try {
     console.error('❌ Firebase initialization failed:', error);
 }
 
-// DevOps Preparation Tracker with Admin Panel
-class DevOpsTrackerAdmin {
+// Universal Progress Tracker with Admin Panel
+class UniversalProgressTracker {
     constructor() {
         this.user = null;
         this.isAdmin = false;
@@ -1438,98 +1437,23 @@ class DevOpsTrackerAdmin {
         this.currentAdminTab = 'dashboard';
         this.currentSubtopics = [];
 
-        // Default DevOps topics data
+        // Default starter topics - can be customized by admin
         this.defaultTopics = [
             {
-                "id": "terraform",
-                "name": "Terraform",
-                "description": "Infrastructure as Code with Terraform",
+                "id": "sample-topic-1",
+                "name": "Sample Learning Path",
+                "description": "Example topic to get you started",
                 "subtopics": [
-                    {"id": "terraform-basics", "name": "Terraform Basics & Architecture", "completed": false, "comments": ""},
-                    {"id": "iac-concepts", "name": "Infrastructure as Code (IaC) Concepts", "completed": false, "comments": ""},
-                    {"id": "terraform-commands", "name": "Terraform Commands & CLI", "completed": false, "comments": ""},
-                    {"id": "state-management", "name": "State Management & Remote State", "completed": false, "comments": ""},
-                    {"id": "terraform-modules", "name": "Modules & Module Development", "completed": false, "comments": ""},
-                    {"id": "variables-datasources", "name": "Variables & Data Sources", "completed": false, "comments": ""},
-                    {"id": "providers", "name": "Providers & Provider Configuration", "completed": false, "comments": ""},
-                    {"id": "workspaces", "name": "Terraform Workspaces", "completed": false, "comments": ""},
-                    {"id": "terraform-security", "name": "Best Practices & Security", "completed": false, "comments": ""},
-                    {"id": "terraform-scenarios", "name": "Scenario-Based Questions", "completed": false, "comments": ""}
-                ]
-            },
-            {
-                "id": "linux", 
-                "name": "Linux",
-                "description": "Linux System Administration & Operations",
-                "subtopics": [
-                    {"id": "linux-fundamentals", "name": "Linux Fundamentals & Architecture", "completed": false, "comments": ""},
-                    {"id": "file-system", "name": "File System & Directory Structure", "completed": false, "comments": ""},
-                    {"id": "command-line", "name": "Command Line & Shell Scripting", "completed": false, "comments": ""},
-                    {"id": "process-management", "name": "Process Management", "completed": false, "comments": ""},
-                    {"id": "system-admin", "name": "System Administration", "completed": false, "comments": ""},
-                    {"id": "network-config", "name": "Network Configuration", "completed": false, "comments": ""},
-                    {"id": "security-permissions", "name": "Security & Permissions", "completed": false, "comments": ""},
-                    {"id": "package-management", "name": "Package Management", "completed": false, "comments": ""},
-                    {"id": "system-monitoring", "name": "System Monitoring & Troubleshooting", "completed": false, "comments": ""},
-                    {"id": "performance-tuning", "name": "Performance Tuning", "completed": false, "comments": ""}
-                ]
-            },
-            {
-                "id": "kubernetes",
-                "name": "Kubernetes", 
-                "description": "Container Orchestration with Kubernetes",
-                "subtopics": [
-                    {"id": "k8s-architecture", "name": "Kubernetes Architecture & Components", "completed": false, "comments": ""},
-                    {"id": "pods-deployments", "name": "Pods, Deployments & Services", "completed": false, "comments": ""},
-                    {"id": "configmaps-secrets", "name": "ConfigMaps & Secrets", "completed": false, "comments": ""},
-                    {"id": "storage-pv", "name": "Storage & Persistent Volumes", "completed": false, "comments": ""},
-                    {"id": "k8s-networking", "name": "Networking & Ingress", "completed": false, "comments": ""},
-                    {"id": "rbac-security", "name": "RBAC & Security", "completed": false, "comments": ""},
-                    {"id": "monitoring-logging", "name": "Monitoring & Logging", "completed": false, "comments": ""},
-                    {"id": "helm", "name": "Helm & Package Management", "completed": false, "comments": ""},
-                    {"id": "k8s-troubleshooting", "name": "Troubleshooting & Debugging", "completed": false, "comments": ""},
-                    {"id": "k8s-best-practices", "name": "Best Practices & Scenarios", "completed": false, "comments": ""}
-                ]
-            },
-            {
-                "id": "jenkins",
-                "name": "Jenkins",
-                "description": "CI/CD Automation with Jenkins", 
-                "subtopics": [
-                    {"id": "jenkins-architecture", "name": "Jenkins Architecture & Setup", "completed": false, "comments": ""},
-                    {"id": "pipeline-development", "name": "Pipeline Development (Declarative & Scripted)", "completed": false, "comments": ""},
-                    {"id": "plugin-management", "name": "Plugin Management", "completed": false, "comments": ""},
-                    {"id": "build-deployment", "name": "Build & Deployment Automation", "completed": false, "comments": ""},
-                    {"id": "jenkins-security", "name": "Security & User Management", "completed": false, "comments": ""},
-                    {"id": "master-slave", "name": "Master-Slave Configuration", "completed": false, "comments": ""},
-                    {"id": "git-integration", "name": "Integration with Git & SCM", "completed": false, "comments": ""},
-                    {"id": "docker-k8s-integration", "name": "Docker & Kubernetes Integration", "completed": false, "comments": ""},
-                    {"id": "jenkins-monitoring", "name": "Monitoring & Troubleshooting", "completed": false, "comments": ""},
-                    {"id": "jenkins-best-practices", "name": "Best Practices", "completed": false, "comments": ""}
-                ]
-            },
-            {
-                "id": "github",
-                "name": "GitHub",
-                "description": "Version Control & GitHub Workflows",
-                "subtopics": [
-                    {"id": "git-fundamentals", "name": "Git Fundamentals & Commands", "completed": false, "comments": ""},
-                    {"id": "branching-merging", "name": "Branching & Merging Strategies", "completed": false, "comments": ""},
-                    {"id": "github-actions", "name": "GitHub Actions & Workflows", "completed": false, "comments": ""},
-                    {"id": "pull-requests", "name": "Pull Requests & Code Review", "completed": false, "comments": ""},
-                    {"id": "repo-management", "name": "Repository Management", "completed": false, "comments": ""},
-                    {"id": "github-security", "name": "GitHub Security Features", "completed": false, "comments": ""},
-                    {"id": "api-integrations", "name": "API & Integrations", "completed": false, "comments": ""},
-                    {"id": "team-collaboration", "name": "Collaboration & Team Management", "completed": false, "comments": ""},
-                    {"id": "advanced-git", "name": "Advanced Git Operations", "completed": false, "comments": ""},
-                    {"id": "git-best-practices", "name": "Best Practices & Troubleshooting", "completed": false, "comments": ""}
+                    {"id": "basics-1", "name": "Getting Started", "completed": false, "comments": ""},
+                    {"id": "intermediate-1", "name": "Intermediate Concepts", "completed": false, "comments": ""},
+                    {"id": "advanced-1", "name": "Advanced Topics", "completed": false, "comments": ""}
                 ]
             }
         ];
 
         this.data = { topics: [] };
 
-        console.log('DevOps Tracker with Admin Panel initialized');
+        console.log('Universal Progress Tracker with Admin Panel initialized');
         this.init();
     }
 
@@ -2536,6 +2460,16 @@ class DevOpsTrackerAdmin {
 
         container.innerHTML = '';
 
+        if (this.data.topics.length === 0) {
+            container.innerHTML = `
+                <div style="text-align: center; padding: 4rem 2rem; color: var(--color-text-muted);">
+                    <h3>No topics available yet</h3>
+                    <p>Your admin needs to add some topics to get started!</p>
+                </div>
+            `;
+            return;
+        }
+
         this.data.topics.forEach((topic) => {
             const completedCount = topic.subtopics.filter(st => st.completed).length;
             const totalCount = topic.subtopics.length;
@@ -2704,7 +2638,7 @@ class DevOpsTrackerAdmin {
         const completedSubtopics = this.data.topics.reduce((sum, topic) => 
             sum + topic.subtopics.filter(st => st.completed).length, 0);
 
-        const overallPercentage = Math.round((completedSubtopics / totalSubtopics) * 100);
+        const overallPercentage = totalSubtopics > 0 ? Math.round((completedSubtopics / totalSubtopics) * 100) : 0;
 
         // Update overall progress
         const progressFill = document.getElementById('overallProgressFill');
@@ -2721,7 +2655,7 @@ class DevOpsTrackerAdmin {
         this.data.topics.forEach(topic => {
             const completedCount = topic.subtopics.filter(st => st.completed).length;
             const totalCount = topic.subtopics.length;
-            const percentage = Math.round((completedCount / totalCount) * 100);
+            const percentage = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
 
             const progressCircle = document.querySelector(`[data-topic-id="${topic.id}"] .progress-circle`);
             if (progressCircle) {
@@ -2776,7 +2710,7 @@ class DevOpsTrackerAdmin {
         const completedSubtopics = this.data.topics.reduce((sum, topic) => 
             sum + topic.subtopics.filter(st => st.completed).length, 0);
 
-        let exportText = `DevOps Preparation Progress Report - ${this.user.email || this.user.uid}\n`;
+        let exportText = `Progress Report - ${this.user.email || this.user.uid}\n`;
         exportText += `Generated: ${new Date().toLocaleString()}\n`;
         exportText += `Overall Progress: ${completedSubtopics}/${totalSubtopics} (${Math.round((completedSubtopics / totalSubtopics) * 100)}%)\n\n`;
 
@@ -2803,7 +2737,7 @@ class DevOpsTrackerAdmin {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `devops-prep-progress-${(this.user.email || this.user.uid).split('@')[0]}-${new Date().toISOString().split('T')[0]}.txt`;
+        a.download = `progress-report-${(this.user.email || this.user.uid).split('@')[0]}-${new Date().toISOString().split('T')[0]}.txt`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
@@ -2813,16 +2747,16 @@ class DevOpsTrackerAdmin {
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded, initializing DevOps Tracker with Admin Panel...');
+    console.log('DOM loaded, initializing Universal Progress Tracker...');
 
     try {
-        window.tracker = new DevOpsTrackerAdmin();
+        window.tracker = new UniversalProgressTracker();
     } catch (error) {
-        console.error('Failed to initialize DevOps Tracker:', error);
+        console.error('Failed to initialize tracker:', error);
         document.body.innerHTML = `
             <div style="padding: 2rem; text-align: center;">
                 <h2>❌ Failed to Load</h2>
-                <p>DevOps Tracker failed to initialize. Please refresh the page.</p>
+                <p>Tracker failed to initialize. Please refresh the page.</p>
                 <p style="color: #dc2626; font-size: 0.9rem;">${error.message}</p>
             </div>
         `;
